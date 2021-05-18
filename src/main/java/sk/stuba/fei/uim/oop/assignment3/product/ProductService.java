@@ -39,4 +39,12 @@ public class ProductService implements IProductService{
     public Product getProductsById(Long id) {
         return this.repository.findById(id).orElseThrow();
     }
+
+    @Override
+    public Product update(Long id, ProductRequest request) {
+        Product pToUpdate = this.repository.findById(id).orElseThrow();
+        pToUpdate.setName(request.getName());
+        pToUpdate.setDescription(request.getDescription());
+        return pToUpdate;
+    }
 }

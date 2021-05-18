@@ -29,4 +29,9 @@ public class ProductController {
     public ProductResponse addProduct(@RequestBody ProductRequest request){
         return new ProductResponse(this.service.create(request));
     }
+
+    @PutMapping("/{id}")
+    public ProductResponse addProduct(@PathVariable("id") Long id, @RequestBody ProductRequest request){
+        return new ProductResponse(this.service.update(id, request));
+    }
 }
