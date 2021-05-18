@@ -47,4 +47,9 @@ public class ProductService implements IProductService{
         pToUpdate.setDescription(request.getDescription());
         return pToUpdate;
     }
+
+    @Override
+    public void delete(Long id) {
+        this.repository.deleteById(id);
+    }
 }

@@ -9,4 +9,5 @@ public interface IProductService {
     Product create(ProductRequest request);
     Product getProductsById(Long id);
     Product update(Long id, ProductRequest request);
+    void delete(Long id);
 }
