@@ -21,4 +21,9 @@ public class CartService implements ICartService{
         Cart cart = new Cart();
         return this.repository.save(cart);
     }
+
+    @Override
+    public Cart getCart(Long id) {
+        return this.repository.findById(id).orElseThrow();
+    }
 }
