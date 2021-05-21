@@ -46,18 +46,15 @@ public class CartService implements ICartService{
         }
         else{
             product.setAmount(product.getAmount() - itemRequest.getAmount());
-            if(!cart.getShoppingList().contains(new ShoppingListItem(itemRequest))) {
-                cart.getShoppingList().add(new ShoppingListItem(itemRequest));
-            }
-            else {
-                for(var item : cart.getShoppingList()){
-                    if(item.getProductId().equals(product.getId())){
-                        item.setAmount(item.getAmount() + itemRequest.getAmount());
-                    }
+            for(var item : cart.getShoppingList()){
+                if(item.getProductId().equals(itemRequest.getProductId())){
+                    item.setAmount(item.getAmount() + itemRequest.getAmount());
+                    return cart;
                 }
             }
+            cart.getShoppingList().add(new ShoppingListItem(itemRequest));
+            return cart;
         }
-        return cart;
     }
 
     @Override
