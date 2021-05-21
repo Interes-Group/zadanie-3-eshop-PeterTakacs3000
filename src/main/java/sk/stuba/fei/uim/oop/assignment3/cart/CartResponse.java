@@ -7,7 +7,7 @@ import java.util.List;
 @Getter
 public class CartResponse {
     private Long id;
-    private List<shoppingListItem> shoppingList;
+    private List<ShoppingListItem> shoppingList;
     private boolean payed;
 
     public CartResponse(Cart cart) {

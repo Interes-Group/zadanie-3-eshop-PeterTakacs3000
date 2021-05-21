@@ -17,9 +17,19 @@ public class CartController {
         return new CartResponse(this.service.create());
     }
 
+    @PostMapping("/{id}/add")
+    public CartResponse addItemToCart(@PathVariable("id") Long id, @RequestBody ShoppingListItemRequest itemRequest){
+        return new CartResponse(this.service.addItem(id, itemRequest));
+    }
+
     @GetMapping("/{id}")
     public CartResponse getCartById (@PathVariable("id") Long id){
         return new CartResponse(this.service.getCart(id));
+    }
+
+    @GetMapping("/{id}/pay")
+    public String payCart(@PathVariable("id") Long id){
+        return this.service.pay(id);
     }
 
     @DeleteMapping("/{id}")
