@@ -24,10 +24,20 @@ public class ProductController {
         return new ProductResponse(this.service.getProductsById(id));
     }
 
+    @GetMapping("/{id}/amount")
+    public ProductResponseAmount getAmount(@PathVariable("id") Long id){
+        return new ProductResponseAmount(this.service.getAmount(id));
+    }
+
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
     public ProductResponse addProduct(@RequestBody ProductRequest request){
         return new ProductResponse(this.service.create(request));
+    }
+
+    @PostMapping("/{id}/amount")
+    public ProductResponseAmount addAmount(@PathVariable("id") Long id, @RequestBody ProductRequestAmount requestAmount){
+        return new ProductResponseAmount(this.service.addAmount(id, requestAmount));
     }
 
     @PutMapping("/{id}")

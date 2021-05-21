@@ -50,6 +50,19 @@ public class ProductService implements IProductService{
 
     @Override
     public void delete(Long id) {
-        this.repository.deleteById(id);
+        Product pToDelete = this.repository.findById(id).orElseThrow();
+        this.repository.delete(pToDelete);
+    }
+
+    @Override
+    public int getAmount(Long id) {
+        return this.repository.findById(id).orElseThrow().getAmount();
+    }
+
+    @Override
+    public int addAmount(Long id, ProductRequestAmount requestAmount) {
+        Product pToAddAmount = this.repository.findById(id).orElseThrow();
+        pToAddAmount.setAmount(pToAddAmount.getAmount() + requestAmount.getAmount());
+        return requestAmount.getAmount();
     }
 }
