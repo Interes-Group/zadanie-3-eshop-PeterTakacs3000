@@ -8,7 +8,7 @@ public interface IProductService {
     List<Product> getAll();
     Product create(ProductRequest request);
     Product getProductsById(Long id);
-    Product update(Long id, ProductRequest request);
+    Product update(Long id, ProductRequestUpdate request);
     void delete(Long id);
     int getAmount(Long id);
     int addAmount(Long id, ProductRequestAmount requestAmount);

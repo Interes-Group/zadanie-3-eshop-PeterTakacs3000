@@ -41,10 +41,10 @@ public class ProductService implements IProductService{
     }
 
     @Override
-    public Product update(Long id, ProductRequest request) {
+    public Product update(Long id, ProductRequestUpdate request) {
         Product pToUpdate = this.repository.findById(id).orElseThrow();
-        pToUpdate.setName(request.getName());
-        pToUpdate.setDescription(request.getDescription());
+        if (request.getName() != null) pToUpdate.setName(request.getName());
+        if (request.getDescription() != null) pToUpdate.setDescription(request.getDescription());
         return pToUpdate;
     }
 
@@ -63,6 +63,6 @@ public class ProductService implements IProductService{
     public int addAmount(Long id, ProductRequestAmount requestAmount) {
         Product pToAddAmount = this.repository.findById(id).orElseThrow();
         pToAddAmount.setAmount(pToAddAmount.getAmount() + requestAmount.getAmount());
-        return requestAmount.getAmount();
+        return pToAddAmount.getAmount();
     }
 }
