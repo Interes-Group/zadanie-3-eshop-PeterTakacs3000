@@ -21,4 +21,9 @@ public class CartController {
     public CartResponse getCartById (@PathVariable("id") Long id){
         return new CartResponse(this.service.getCart(id));
     }
+
+    @DeleteMapping("/{id}")
+    void deleteCartById(@PathVariable("id") Long id){
+        this.service.deleteCart(id);
+    }
 }
