@@ -49,6 +49,13 @@ public class CartService implements ICartService{
             if(!cart.getShoppingList().contains(new ShoppingListItem(itemRequest))) {
                 cart.getShoppingList().add(new ShoppingListItem(itemRequest));
             }
+            else {
+                for(var item : cart.getShoppingList()){
+                    if(item.getProductId().equals(product.getId())){
+                        item.setAmount(item.getAmount() + itemRequest.getAmount());
+                    }
+                }
+            }
         }
         return cart;
     }
@@ -64,7 +71,7 @@ public class CartService implements ICartService{
             int sum = 0;
             for (var item : cart.getShoppingList()){
                 Product product = this.productService.getProductsById(item.getProductId());
-                sum += product.getPrice();
+                sum += (product.getPrice() * item.getAmount());
             }
             return ""+sum;
         }
